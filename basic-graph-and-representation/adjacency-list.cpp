@@ -3,20 +3,26 @@ using namespace std;
 
 int main()
 {
-
+  // input node and edge
   int n, e;
   cin >> n >> e;
-  int arr[n];
+
+  // initialize a matrix that contain vector of int
   vector<int> mat[n];
-  while (n--)
+  while (e--)
   {
+    // input a,b
     int a, b;
     cin >> a >> b;
+    // connection
     mat[a].push_back(b);
+    // ignore this if graph is directed
     mat[b].push_back(a);
   }
-  for(int i=0; i<mat[0].size(); i++){
-    cout << mat[0][i] << endl;
+  // print
+  for (int i = 0; i < mat[3].size(); i++)
+  {
+    cout <<mat[3][i] << " ";
   }
   return 0;
 }

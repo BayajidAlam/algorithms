@@ -7,27 +7,31 @@ int main()
   int n, e;
   cin >> n >> e;
   vector<pair<int, int>> v;
-  while (n--)
+  while (e--)
   {
     int a, b;
     cin >> a >> b;
-    // v.push_back({a,b});
     v.push_back(make_pair(a, b));
+    // alternative
+    // v.push_back({a, b});
   }
+
+  // print
   // for (int i = 0; i < v.size(); i++)
   // {
   //   cout << v[i].first << " " << v[i].second << endl;
   // }
+
   // another way to print
-  // for (pair<int, int> p : v)
+  // for (pair<int, int> pr : v)
   // {
-  //   cout << p.first << " " << p.second << endl;
+  //   cout << pr.first << " " << pr.second << endl;
   // }
 
   // another way to print
-  for (auto p : v)
+  for (auto pr : v)
   {
-    cout << p.first << " " << p.second << endl;
+    cout << pr.first << " " << pr.second << endl;
   }
   return 0;
 }
