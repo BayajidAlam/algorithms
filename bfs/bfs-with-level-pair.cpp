@@ -4,12 +4,13 @@ using namespace std;
 vector<int> v[1005];
 bool visit[1005];
 
-void bfs(int src,int des)
+void bfs(int src, int des)
 {
+  // saving the node and it's value of pair on vector
   queue<pair<int, int>> q;
   q.push({src, 0});
   visit[src] = true;
-
+  bool flag = false;
   while (!q.empty())
   {
     pair<int, int> p = q.front();
@@ -19,10 +20,14 @@ void bfs(int src,int des)
     int level = p.second;
 
     if (level == des)
+    {
       cout << level << endl;
+      flag = true;
+    }
 
     for (int child : v[pr])
     {
+      // if child is not visited then increment the level
       if (!visit[child])
       {
         q.push({child, level + 1});
@@ -30,6 +35,10 @@ void bfs(int src,int des)
       }
     }
   }
+  if (flag)
+    cout << "Found" << endl;
+  else
+    cout << "NOT FOUND" << endl;
 }
 
 int main()
@@ -46,11 +55,11 @@ int main()
     v[b].push_back(a);
   }
 
-  int src;
-  cin >> src;
+  int src, des;
+  cin >> src >> des;
 
   memset(visit, false, sizeof(visit));
-  bfs(src, 3);
+  bfs(src, des);
 
   return 0;
 }
