@@ -4,14 +4,18 @@ using namespace std;
 int main()
 {
 
-  int n, e;
+  long long n, e;
   cin >> n >> e;
-  int adj[n][n];
+  long long adj[n][n];
   for (int i = 0; i < n; i++)
   {
     for (int j = 0; j < n; j++)
     {
       adj[i][j] = INT_MAX;
+      if (i == j)
+      {
+        adj[i][j] = 0;
+      }
     }
   }
   while (e--)
@@ -20,13 +24,44 @@ int main()
     cin >> a >> b >> c;
     adj[a][b] = c;
   }
+
+  for (int k = 0; k < n; k++)
+  {
+    for (int i = 0; i < n; i++)
+    {
+      for (int j = 0; j < n; j++)
+      {
+        if (adj[i][k] + adj[k][j] < adj[i][j])
+        {
+          adj[i][j] = adj[i][k] + adj[k][j];
+        }
+      }
+    }
+  }
+
   for (int i = 0; i < n; i++)
   {
-    for (int j = 0; j < n; j++)
+    if (adj[i][i] < 0)
     {
-      cout << adj[i][j] << " ";
+      cout << "Cycle detected";
+      break;
     }
-    cout << endl;
   }
+
+  // for (int i = 0; i < n; i++)
+  // {
+  //   for (int j = 0; j < n; j++)
+  //   {
+  //     if (adj[i][j] == INT_MAX)
+  //     {
+  //       cout << "IMF";
+  //     }
+  //     else
+  //     {
+  //       cout << adj[i][j] << " ";
+  //     }
+  //   }
+  //   cout << endl;
+  // }
   return 0;
 }
