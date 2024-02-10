@@ -2,11 +2,16 @@
 using namespace std;
 
 const int N = 1e5 + 5;
+// track visit
 bool vis[N];
+// vector of adj matrix
 vector<int> adj[N];
-int parent_Array[N];
-bool ans;
+// track parent
+int parArray[N];
+// is cycle detected though flag
+bool flag;
 
+// bfs func
 void bfs(int s)
 {
   queue<int> q;
@@ -14,19 +19,19 @@ void bfs(int s)
   vis[s] = true;
   while (!q.empty())
   {
-    int parent = q.front();
+    int pr = q.front();
+    cout << pr << endl;
     q.pop();
-    cout << parent << endl;
-    for (int child : adj[parent])
+    for (int child : adj[pr])
     {
-      if (vis[child] == true && parent_Array[parent] != child)
+      if (vis[child] && parArray[pr] != child)
       {
-        ans = true;
+        flag = true;
       }
       if (!vis[child])
       {
         vis[child] = true;
-        parent_Array[child] = parent;
+        parArray[child] = pr;
         q.push(child);
       }
     }
@@ -46,10 +51,11 @@ int main()
     adj[b].push_back(a);
   }
 
+  // set def value
   memset(vis, false, sizeof(vis));
-  memset(parent_Array, -1, sizeof(parent_Array));
+  memset(parArray, -1, sizeof(parArray));
+  flag = false;
 
-  ans = false;
   for (int i = 0; i < n; i++)
   {
     if (!vis[i])
@@ -57,9 +63,10 @@ int main()
       bfs(i);
     }
   }
-  if (ans)
-    cout << "Cyclic" << endl;
+
+  if (flag)
+    cout << "Cycle" << endl;
   else
-    cout << "Not Cyclic" << endl;
+    cout << "No cycle" << endl;
   return 0;
 }

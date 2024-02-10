@@ -2,7 +2,7 @@
 using namespace std;
 
 vector<int> v[1005];
-// track's 
+// track's of level,visited node and pair
 int level[1005];
 bool visit[1005];
 int par[1005];

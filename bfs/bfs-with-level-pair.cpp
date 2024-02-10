@@ -2,6 +2,7 @@
 using namespace std;
 
 vector<int> v[1005];
+// keep track of the visited node 
 bool visit[1005];
 
 void bfs(int src, int des)
@@ -10,9 +11,11 @@ void bfs(int src, int des)
   queue<pair<int, int>> q;
   q.push({src, 0});
   visit[src] = true;
+
   bool flag = false;
   while (!q.empty())
   {
+    //extract the front element form queue
     pair<int, int> p = q.front();
     q.pop();
 
@@ -27,7 +30,7 @@ void bfs(int src, int des)
 
     for (int child : v[pr])
     {
-      // if child is not visited then increment the level
+      // if child is not visited yet then increment the level
       if (!visit[child])
       {
         q.push({child, level + 1});
@@ -43,7 +46,7 @@ void bfs(int src, int des)
 
 int main()
 {
-
+  // input node and edge 
   int n, e;
   cin >> n >> e;
 
@@ -55,10 +58,13 @@ int main()
     v[b].push_back(a);
   }
 
+  // input src and destination 
   int src, des;
   cin >> src >> des;
 
+  // set default value of visited node false 
   memset(visit, false, sizeof(visit));
+  
   bfs(src, des);
 
   return 0;

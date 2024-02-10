@@ -1,6 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+//bfs is used to get shortest path
 // global vector that store all the connected node
 vector<int> v[100000];
 // keep track of visited node

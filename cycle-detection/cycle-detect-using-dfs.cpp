@@ -2,24 +2,28 @@
 using namespace std;
 
 const int N = 1e5 + 5;
+// track visit
 bool vis[N];
+// vector of adj matrix
 vector<int> adj[N];
-int parent_Array[N];
-bool ans;
+// track parent
+int parArray[N];
+// is cycle detected though flag
+bool flag;
 
 void dfs(int parent)
 {
+  // cout << parent << endl;
   vis[parent] = true;
   for (int child : adj[parent])
   {
-    if (vis[child] == true && child != parent_Array[parent])
+    if (vis[child] && child != parArray[parent])
     {
-      ans = true;
-      cout << parent << " " << child << endl;
+      flag = true;
     }
-    if (vis[child] == false)
+    if (!vis[child])
     {
-      parent_Array[child] = parent;
+      parArray[child] = parent;
       dfs(child);
     }
   }
@@ -38,10 +42,11 @@ int main()
     adj[b].push_back(a);
   }
 
+  // set def value
   memset(vis, false, sizeof(vis));
-  memset(parent_Array, -1, sizeof(parent_Array));
+  memset(parArray, -1, sizeof(parArray));
+  flag = false;
 
-  ans = false;
   for (int i = 0; i < n; i++)
   {
     if (!vis[i])
@@ -49,9 +54,10 @@ int main()
       dfs(i);
     }
   }
-  if (ans)
-    cout << "Cyclic" << endl;
+
+  if (flag)
+    cout << "Cycle" << endl;
   else
-    cout << "Not cyclic" << endl;
+    cout << "No cycle" << endl;
   return 0;
 }

@@ -1,0 +1,6 @@
+*.exe
+*.txt
+!note.txt
+.vscode
+.cph
+tempCodeRunnerFile.cpp

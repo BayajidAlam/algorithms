@@ -2,6 +2,7 @@
 using namespace std;
 
 vector<int> v[1005];
+// keep track of level and visited node 
 int level[1005];
 bool visit[1005];
 
