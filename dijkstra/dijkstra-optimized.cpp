@@ -2,19 +2,24 @@
 using namespace std;
 
 const int N = 1e5 + 5;
+// the matrix 
 vector<pair<int, int>> v[N];
+// track of distance 
 int dis[N];
 
-class cmp{
-  public :
-      bool
-      operator()(pair<int, int> a, pair<int, int> b){
-        return a.second > b.second;
-      }
+// custom compare func 
+class cmp
+{
+public:
+  bool operator()(pair<int, int> a, pair<int, int> b)
+  {
+    return a.second > b.second;
+  }
 };
 
 void dijkstra(int src)
 {
+  // use pq that return asc order 
   priority_queue<pair<int, int>, vector<pair<int, int>>, cmp> pq;
   pq.push({src, 0});
   dis[src] = 0;
@@ -40,7 +45,7 @@ void dijkstra(int src)
 
 int main()
 {
-
+  // inputs 
   int n, e;
   cin >> n >> e;
   while (e--)
@@ -51,15 +56,19 @@ int main()
     v[b].push_back({a, c});
   }
 
+  // set default value 
   for (int i = 0; i < n; i++)
   {
     dis[i] = INT_MAX;
   }
+
+  // func 
   dijkstra(0);
 
+  // print 
   for (int i = 0; i < n; i++)
   {
-    cout << i << " " << dis[i] << endl;
+    cout << i << "-> " << dis[i] << endl;
   }
   return 0;
 }
