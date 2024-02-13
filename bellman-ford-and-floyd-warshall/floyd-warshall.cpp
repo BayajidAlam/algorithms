@@ -1,22 +1,21 @@
 #include <bits/stdc++.h>
 using namespace std;
-
+#define ll long long
 int main()
 {
 
-  long long n, e;
+  ll n, e;
   cin >> n >> e;
-  long long adj[n][n];
+  ll adj[n][n];
   for (int i = 0; i < n; i++)
   {
     for (int j = 0; j < n; j++)
     {
       adj[i][j] = INT_MAX;
       if (i == j)
-      {
         adj[i][j] = 0;
-      }
     }
+    cout << endl;
   }
   while (e--)
   {
@@ -39,23 +38,12 @@ int main()
     }
   }
 
-  for (int i = 0; i < n; i++)
-  {
-    if (adj[i][i] < 0)
-    {
-      cout << "Cycle detected";
-      break;
-    }
-  }
-
   // for (int i = 0; i < n; i++)
   // {
   //   for (int j = 0; j < n; j++)
   //   {
   //     if (adj[i][j] == INT_MAX)
-  //     {
-  //       cout << "IMF";
-  //     }
+  //       cout << "INF ";
   //     else
   //     {
   //       cout << adj[i][j] << " ";
@@ -63,5 +51,15 @@ int main()
   //   }
   //   cout << endl;
   // }
+
+  // check cycle
+  for (int i = 0; i < n; i++)
+  {
+    if (adj[i][i] < 0)
+    {
+      cout << "Cycle" << endl;
+      break;
+    }
+  }
   return 0;
 }

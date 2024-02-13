@@ -27,13 +27,10 @@ int main()
     cin >> u >> v >> c;
     EdgeList.push_back(Edge(u, v, c));
     // for undirected
-    EdgeList.push_back(Edge(v, u, c));
+    // EdgeList.push_back(Edge(v, u, c));
   }
 
-  for (int i = 0; i < n; i++)
-  {
-    dis[i] = INT_MAX;
-  }
+  
   dis[0] = 0;
   for (int i = 1; i < n - 1; i++)
   {
@@ -62,7 +59,6 @@ int main()
       {
         cycle = true;
         break;
-        dis[v] = dis[u] + c;
       }
     }
   }
